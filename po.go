@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	log.SetFlags(0)
 	flag.Parse()
 
 	if err := os.MkdirAll("_vendor", 0755); err != nil {
@@ -18,6 +19,10 @@ func main() {
 	}
 
 	args := flag.Args()
+
+	if len(args) == 0 {
+		log.Fatal("not enough arguments to po")
+	}
 
 	env := os.Environ()
 	for i, path := range env {
